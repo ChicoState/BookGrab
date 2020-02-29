@@ -67,7 +67,7 @@ class MyHomePage extends StatelessWidget {
         title: Text(title),
       ),
       body: StreamBuilder(
-          stream: Firestore.instance.collection('Books').snapshots(),
+          stream: Firestore.instance.collection('users').snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) return const Text('Loading....');
             return ListView.builder(
