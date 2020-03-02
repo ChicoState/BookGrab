@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:loginpage/login.dart';
+import 'login.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget{
@@ -12,4 +13,3 @@ class MyApp extends StatelessWidget{
         home: LoginPage()
     );
   }
-}

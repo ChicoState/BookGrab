@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loginpage/app_card.dart';
+import 'app_card.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key key}) : super(key: key);
