@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_login/screens/authenticate/sign_in.dart';
 //This will serve as authentication page for app
 
 
@@ -11,7 +12,11 @@ import 'package:flutter/material.dart';
     class _AuthenticateState extends State<Authenticate> {
       @override
       Widget build(BuildContext context) {
-        return Container();
+       //authenticate returns sign in
+        return Container(
+          child: SignIn(),
+
+        );
       }
     }
     
