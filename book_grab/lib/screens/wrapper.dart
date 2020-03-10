@@ -9,7 +9,7 @@ class Wrapper extends StatelessWidget {
     //return either Home or authenticate widget
 
     final user = Provider.of<User>(context);
-    print(user);
+   // print(user);
 
     //return home or auth widget based on null/user val, these are the two screens which depend on the status of the user object.
 
