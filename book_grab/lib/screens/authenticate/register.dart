@@ -113,10 +113,6 @@ class _RegisterState extends State<Register> {
                     if (result == null){
                       setState(() => error = 'Please provide valid register values.');
                     }
-                    else {
-                      //automatically user is signin
-                    }
-
                    }
                 },
 

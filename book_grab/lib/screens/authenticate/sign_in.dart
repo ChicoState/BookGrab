@@ -20,6 +20,11 @@ class _SignInState extends State<SignIn> {
   String email = ' ';
   //text field state of password
   String password = ' ';
+  String error = '';
+
+
+  //key will be used to identify form
+  final _formKey = GlobalKey<FormState>();
 
 
   @override
@@ -52,11 +57,14 @@ class _SignInState extends State<SignIn> {
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
 
         child: Form(
+          //associate global key with our form's validation.
+          key: _formKey,
           child: Column(
             children: <Widget>[
               SizedBox(height: 10.0),
               //text field for email with onchanged prop val is contents of formfield, every time value in formfield changes this runs
               TextFormField(
+                  validator: (val) => val.isEmpty ? 'Enter an email' : null,
                 onChanged: (val) {
                  setState(()=> email = val);
 
@@ -67,6 +75,7 @@ class _SignInState extends State<SignIn> {
               //password form field, obscure text
               TextFormField(
                   obscureText: true,
+                  validator: (val) => val.length < 8  ? 'Enter a password of atleast 8 chars' : null,
                   onChanged: (val){
 
                     setState(()=> password = val);
@@ -87,15 +96,25 @@ class _SignInState extends State<SignIn> {
                   //Asynchronous function as we want to go out and interact with firebase to sign the user in. (so it will take time, thus async)
                   onPressed: () async {
                    //printing email password combo for debug purposes
-                    print(email);
-                    print(password);
+                    //print(email);
+                    //print(password);
+                    if (_formKey.currentState.validate()){
+                      //signin and gather result for this
+                      dynamic result = await _auth.signinWithEmailPassword(email, password);
+                     if (result == null){
+                       setState(() => error = 'Couldnt signin with provided info');
+                     }
+                    }
+                  }
 
-                  },
 
-                )
-
-
-
+                ),
+              //display error
+              SizedBox(height: 8.0),
+              Text(
+                error,
+                style: TextStyle(color: Colors.red, fontSize: 10.0),
+              ),
 
             ],
 

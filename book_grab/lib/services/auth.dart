@@ -43,6 +43,22 @@ class AuthService{
 
   //sign in w email and pass
 
+  Future signinWithEmailPassword(String email, String password) async {
+    try{
+      //firebase method
+      AuthResult result = await _auth.signInWithEmailAndPassword(email: email, password: password);
+      FirebaseUser user = result.user;
+      //grab user and store it in our own user class
+      return _userFromFirebaseUser(user);
+    } catch(e){
+      //catch exception, print error message
+      print(e.toString());
+      return null;
+    }
+
+  }
+
+
 
 
 //register w email and pass, this will take in email and password and try to create a firebase user from those fields
