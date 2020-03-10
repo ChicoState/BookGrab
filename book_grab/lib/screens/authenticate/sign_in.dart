@@ -54,36 +54,39 @@ class _SignInState extends State<SignIn> {
 
 
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
 
         child: Form(
           //associate global key with our form's validation.
           key: _formKey,
           child: Column(
             children: <Widget>[
-              SizedBox(height: 10.0),
+              SizedBox(height: 5.0),
               //text field for email with onchanged prop val is contents of formfield, every time value in formfield changes this runs
               TextFormField(
-                  validator: (val) => val.isEmpty ? 'Enter an email' : null,
+                decoration: InputDecoration(
+                  hintText: 'email',
+                ),
                 onChanged: (val) {
-                 setState(()=> email = val);
+                setState(()=> email = val);
 
                 }
               ),
               //sized box for spacing
-              SizedBox(height: 10.0),
+              SizedBox(height: 5.0),
               //password form field, obscure text
               TextFormField(
-                  obscureText: true,
-                  validator: (val) => val.length < 8  ? 'Enter a password of atleast 8 chars' : null,
-                  onChanged: (val){
-
-                    setState(()=> password = val);
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: 'password',
+                ),
+                onChanged: (val){
+                setState(()=> password = val);
 
                 }
 
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 5.0),
               RaisedButton(
                 color: Colors.green[500],
                 child: Text(

@@ -55,7 +55,7 @@ class _RegisterState extends State<Register> {
 
 
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 6.0, horizontal: 50.0),
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
 
         child: Form(
           //this will allow us to keep track of the form and validate it in the future if needed.
@@ -65,31 +65,33 @@ class _RegisterState extends State<Register> {
 
           child: Column(
             children: <Widget>[
-              SizedBox(height: 2.0),
+              SizedBox(height: 5.0),
               //text field for email with onchanged prop val is contents of formfield, every time value in formfield changes this runs
               TextFormField(
                   //functionality to validate inputs
                 //if empty return helpstring
-                  validator: (val) => val.isEmpty ? 'Enter an email' : null,
+                  decoration: InputDecoration(
+                    hintText: 'email@mail.school.edu',
+                  ),
                   onChanged: (val) {
                     setState(()=> email = val);
 
                   }
               ),
               //sized box for spacing
-              SizedBox(height: 2.0),
+              SizedBox(height: 5.0),
               //password form field, obscure text
               TextFormField(
                   obscureText: true,
-                  validator: (val) => val.length < 8  ? 'Enter a password of atleast 8 chars' : null,
+                  decoration: InputDecoration(
+                    hintText: 'password (8 or more characters)',
+                  ),
                   onChanged: (val){
-
                     setState(()=> password = val);
-
                   }
 
               ),
-              SizedBox(height: 2.0),
+              SizedBox(height: 5.0),
               RaisedButton(
                 color: Colors.green[500],
                 child: Text(
