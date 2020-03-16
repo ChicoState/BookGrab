@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:book_grab/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+double _width = 250.0;
+
 //going to return an interactive child that can toggle data
 class UserButton extends StatefulWidget {
   final DocumentSnapshot ds;
@@ -21,7 +23,7 @@ class _UserState extends State<UserButton> {
       textDirection: TextDirection.ltr,
       children: <Widget>[
         SizedBox(
-          width: 200,
+          width: _width,
           child: RaisedButton(
             color: Colors.green,
             child: Text(
@@ -37,12 +39,95 @@ class _UserState extends State<UserButton> {
           ),
         ),
         Visibility(
-            visible: _visible,
-            child: new Column(
-              children: <Widget>[
-                
-              ]
-            )
+          visible: _visible,
+          child: StreamBuilder(
+            stream: Firestore.
+                      instance.
+                      collection('users').
+                      document(widget.ds['username']).
+                      collection('for_sale').snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return const Text("Loading...");
+              return ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: snapshot.data.documents.length,
+                itemBuilder: (context, index) {
+                  DocumentSnapshot ds_book = snapshot.data.documents[index];
+                  return new Column(
+                    children: <Widget>[
+                      Text(
+                        '${ds_book['name']}',
+                        style: new TextStyle(
+                          fontSize: 20.0
+                        ),
+                      ),
+                      Container(
+                        width: _width,
+                        child: Table(
+                          children: [
+                            TableRow(children: [
+                              Text(' Major'),
+                              Text(' ${ds_book['major']}'),
+                            ]),
+                            TableRow(children: [
+                              Text(' Class'),
+                              Text(' ${ds_book['class']}'),
+                            ]),
+                            TableRow(children: [
+                              Text(' Author'),
+                              Text(' ${ds_book['author']}'),
+                            ]),
+                            TableRow(children: [
+                              Text(' ISBN'),
+                              Text(' ${ds_book['isbn']}'),
+                            ]),
+                          ]
+                        ),
+                      ),
+                      Text('\n'),
+                    ],
+                  );
+                }
+              );
+            }
+            /*
+            stream: Firestore.instance.collection('users').snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return const Text("Loading...");
+              return ListView.builder(
+                  itemCount: snapshot.data.documents.length,
+                  itemBuilder: (context, index) {
+                    DocumentSnapshot ds = snapshot.data.documents[index];
+                    return UserButton(
+                      ds: ds,
+                    );
+                  }
+              );
+            }
+
+             */
+          )
+
+          /*
+          child: new Column(
+            children: <Widget>[
+              Container(
+                width: _width,
+              child: Table(
+                border:TableBorder.all(),
+                children: [
+                  TableRow(children: [
+                    Text(' Title'),
+                    Text(' Book Title')
+                  ])
+                ]
+              )
+              )
+            ]
+          )
+
+           */
         ),
       ],
     );
@@ -86,39 +171,14 @@ class Home extends StatelessWidget {
             builder: (context, snapshot) {
               if (!snapshot.hasData) return const Text("Loading...");
               return ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
                 itemCount: snapshot.data.documents.length,
                 itemBuilder: (context, index) {
                   DocumentSnapshot ds = snapshot.data.documents[index];
                   return UserButton(
                     ds: ds,
                   );
-                  /*
-                  bool _show = false;
-                  return new Column(
-                    textDirection: TextDirection.ltr,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 200,
-                        child: RaisedButton(
-                          color: Colors.green,
-                          child: Text(
-                            '${ds["username"]}',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          onPressed: () {
-                            _show = !_show;
-                            print(_show);
-                          },
-                        ),
-                      ),
-                      Visibility(
-                        visible: true,
-                        child: (Text('$_show'))
-                      ),
-                    ],
-                  );
-
-                   */
                 }
               );
             }
