@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:book_grab/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:book_grab/screens/home/sell.dart';
 
 double _width = 250.0;
 
@@ -91,43 +92,17 @@ class _UserState extends State<UserButton> {
                 }
               );
             }
-            /*
-            stream: Firestore.instance.collection('users').snapshots(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) return const Text("Loading...");
-              return ListView.builder(
-                  itemCount: snapshot.data.documents.length,
-                  itemBuilder: (context, index) {
-                    DocumentSnapshot ds = snapshot.data.documents[index];
-                    return UserButton(
-                      ds: ds,
-                    );
-                  }
-              );
-            }
-
-             */
-          )
-
-          /*
-          child: new Column(
-            children: <Widget>[
-              Container(
-                width: _width,
-              child: Table(
-                border:TableBorder.all(),
-                children: [
-                  TableRow(children: [
-                    Text(' Title'),
-                    Text(' Book Title')
-                  ])
-                ]
-              )
-              )
-            ]
-          )
-
-           */
+          ),
+        ),
+        RaisedButton(
+          onPressed: ()  {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Sell(
+                  ds: widget.ds)),
+            );
+          },
+          child: Text("Add book for sale"),
         ),
       ],
     );
@@ -143,9 +118,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       child: Scaffold(
-
         backgroundColor: Colors.green[50],
         appBar: AppBar(
           title: Text('BookGrab'),
@@ -159,7 +132,6 @@ class Home extends StatelessWidget {
               onPressed: () async {
                 await _auth.signOut();
               },
-
             ),
           ],
         ),
