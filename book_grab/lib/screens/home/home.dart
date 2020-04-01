@@ -99,7 +99,7 @@ class _UserState extends State<UserButton> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => Sell(
-                  ds: widget.ds)),
+                  username: widget.ds['username'])),
             );
           },
           child: Text("Add book for sale"),
