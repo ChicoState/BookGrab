@@ -94,15 +94,6 @@ class _SellState extends State<Sell> {
                       ),
                       //Asynchronous function as we want to go out and interact with firebase to sign the user in. (so it will take time, thus async)
                       onPressed: () async {
-                        /*
-                        final Map<String, dynamic> data = {
-                          'name': _name,
-                          'author': _author,
-                          'class': _classNo,
-                          'major': _major,
-                          'isbn': _isbn,
-                        };
-                        */
                         Firestore.instance.collection('users').
                           document('${widget.username}').
                           collection('for_sale').document('$_name').setData({
