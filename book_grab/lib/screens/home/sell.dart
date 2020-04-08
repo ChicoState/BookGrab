@@ -3,9 +3,9 @@ import 'package:book_grab/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Sell extends StatefulWidget {
-  final DocumentSnapshot ds;
+  final String username;
 
-  const Sell({Key key, this.ds}): super(key: key);
+  const Sell({Key key, this.username}): super(key: key);
 
   @override
   _SellState createState() => _SellState();
@@ -13,11 +13,11 @@ class Sell extends StatefulWidget {
 
 class _SellState extends State<Sell> {
   //variables
-  String _name;
-  String _author;
-  String _classNo;
-  String _major;
-  String _isbn;
+  String _name = 'placeholder';
+  String _author = 'placeholder';
+  String _classNo = 'placeholder';
+  String _major = 'placeholder';
+  String _isbn = 'placeholder';
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -31,7 +31,7 @@ class _SellState extends State<Sell> {
       body: Center(
         child: Column(
           children: <Widget>[
-            Text('${widget.ds['username']}'),
+            Text('${widget.username}'),
             Container(
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
               child: Form(
@@ -93,7 +93,18 @@ class _SellState extends State<Sell> {
 
                       ),
                       //Asynchronous function as we want to go out and interact with firebase to sign the user in. (so it will take time, thus async)
-                      onPressed: () {},
+                      onPressed: () async {
+                        Firestore.instance.collection('users').
+                          document('${widget.username}').
+                          collection('for_sale').document('$_name').setData({
+                          'name': _name,
+                          'author': _author,
+                          'class': _classNo,
+                          'major': _major,
+                          'isbn': _isbn,
+                        });
+                        Navigator.pop(context);
+                      },
                     ),
                   ],
                 )
