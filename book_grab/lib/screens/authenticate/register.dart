@@ -120,11 +120,11 @@ class _RegisterState extends State<Register> {
 
                       Firestore.instance.runTransaction((transaction) async {
                         await transaction.set(Firestore.instance.collection(
-                            "users").document(), {
+                            "users").document('$email'), {
                           'user': {
                             'email': email,
                             'password': password,
-                            'username': " ",
+                            'username': email,
                           }
                         });
                       });
