@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:book_grab/services/auth.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 class Register extends StatefulWidget {
   //property to be accessed from authenticate.dart for toggleview
 
@@ -115,6 +115,23 @@ class _RegisterState extends State<Register> {
                     if (result == null){
                       setState(() => error = 'Please provide valid register values.');
                     }
+
+                    //else registration was valid and we can attempt to add user to firestore.
+
+                      Firestore.instance.runTransaction((transaction) async {
+                        await transaction.set(Firestore.instance.collection(
+                            "users").document(), {
+                          'user': {
+                            'email': email,
+                            'password': password,
+                            'username': " ",
+                          }
+                        });
+                      });
+
+
+
+
                    }
                 },
 
