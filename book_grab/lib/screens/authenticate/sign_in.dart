@@ -157,6 +157,7 @@ class _SignInState extends State<SignIn> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: TextFormField(
+                                        obscureText: true,
                                         decoration: InputDecoration(
                                             border: InputBorder.none,
                                             hintText: 'password',
