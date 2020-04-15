@@ -109,10 +109,107 @@ class _UserState extends State<UserButton> {
   }
 }
 
+class InstantSearchBar extends StatefulWidget{
+  @override
+  _mySearch createState() => _mySearch();
+}
+class _mySearch extends State<InstantSearchBar>{
+  var queryResultSet = [];
+  var tempSearchRes = [];
+  initiateSearch(value){
+    if(value.length == 0){
+      setState(() {
+        queryResultSet = [];
+        tempSearchRes = [];
+      });
+    }
+    var capitalized_value = value.substring(0, 1).toUpperCase() + value.substring(1);
+    if(queryResultSet.length == 0 && value.length == 1){
+      SearchService().searchByName(value).then((QuerySnapshot docs){
+        for(int i = 0; i < docs.documents.length; i++){
+          queryResultSet.add(docs.documents[i].data);
+        }
+      });
+    }
+    else{
+      tempSearchRes = [];
+      queryResultSet.forEach((element){
+        if(element['name'].startsWith(capitalized_value)){
+          setState((){
+            tempSearchRes.add(element);
+          });
+        }
+      });
+    }
+  }
+  @override
+  Widget build(BuildContext context) {
+      return new Scaffold(
+        body: ListView( children: <Widget>[
+          Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: TextField(
+                onChanged: (val){
+                  initiateSearch(val);
+                },
+            decoration: InputDecoration(
+                prefixIcon: IconButton(
+                  color: Colors.black,
+                  icon: Icon(Icons.arrow_back),
+                  iconSize: 20.0,
+                  onPressed: () {
+                    //code for the back arrow, doesn't work yet
+                    //  Navigator.of(context).pop();
+                  },
+                ),
+                contentPadding: EdgeInsets.only(left: 25.0),
+                hintText: 'Search for textbooks...',
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4.0)
+                  )
+            ),
+          )
+          ),
+        GridView.count(
+            padding: EdgeInsets.only(left: 10.0, right: 10.0),
+            crossAxisCount: 2,
+            crossAxisSpacing: 4.0,
+            mainAxisSpacing: 4.0,
+            primary: false,
+            shrinkWrap: true,
+            children: tempSearchRes.map((element){
+              return Scaffold(
+                  body: Container(
+                    padding: EdgeInsets.fromLTRB(10,10,10,0),
+                    height: 220,
+                    width: double.maxFinite,
+                      child: Text(element['name'],
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20.0,
+                          )
+                      )
+                  )
+                );
+            }).toList())
+      ])
+    );
+  }
+}
+
+class SearchService {
+  searchByName(String searchField){
+    return Firestore.instance.collection('books')
+        .where('search_key', isEqualTo: searchField.substring(0,1).toUpperCase())
+        .getDocuments();
+  }
+}
+
+
 //going to wrap our book list widget and settings form
 //this will be a stateless widget
 class Home extends StatelessWidget {
-
   final AuthService _auth = AuthService();
 
   @override
@@ -135,25 +232,30 @@ class Home extends StatelessWidget {
             ),
           ],
         ),
-        //Builds a stream of user snapshots, and creates a list
-        //of users usernames to display on the home page. Just an example
-        //of how we can access fields from the database.
-        body: StreamBuilder(
-            stream: Firestore.instance.collection('users').snapshots(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) return const Text("Loading...");
-              return ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: snapshot.data.documents.length,
-                itemBuilder: (context, index) {
-                  DocumentSnapshot ds = snapshot.data.documents[index];
-                  return UserButton(
-                    ds: ds,
-                  );
-                }
-              );
-            }
+        body: Column(
+          children: <Widget>[
+            Expanded(
+               child: InstantSearchBar()
+            ),
+             /*
+             StreamBuilder(
+                  stream: Firestore.instance.collection('users').snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) return const Text("Loading...");
+                    return ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.documents.length,
+                        itemBuilder: (context, index) {
+                          DocumentSnapshot ds = snapshot.data.documents[index];
+                          return UserButton(
+                            ds: ds,
+                          );
+                        }
+                    );
+                  }
+              ),*/
+          ]
         ),
       ),
     );
