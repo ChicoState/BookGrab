@@ -17,6 +17,14 @@ class UserButton extends StatefulWidget {
 
 class _UserState extends State<UserButton> {
   bool _visible = false;
+  String _username;
+
+  void initState() {
+    super.initState();
+    widget.ds["user"] == null
+        ? _username = widget.ds["username"]
+        : _username = widget.ds["user"]["username"];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +36,7 @@ class _UserState extends State<UserButton> {
           child: RaisedButton(
             color: Colors.green,
             child: Text(
-              '${widget.ds["username"]}',
+              "$_username",
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () {
@@ -45,7 +53,7 @@ class _UserState extends State<UserButton> {
             stream: Firestore.
                       instance.
                       collection('users').
-                      document(widget.ds['username']).
+                      document(_username).
                       collection('for_sale').snapshots(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) return const Text("Loading...");
@@ -232,12 +240,20 @@ class Home extends StatelessWidget {
             ),
           ],
         ),
-        body: Column(
+        body: SingleChildScrollView(
+          child: Column(
           children: <Widget>[
-            Expanded(
-               child: InstantSearchBar()
+            SizedBox(height: 5.0),
+            RaisedButton(
+              child: Text("Search for Specific Book"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => InstantSearchBar()),
+                );
+              }
             ),
-             /*
+            SizedBox(height: 20.0),
              StreamBuilder(
                   stream: Firestore.instance.collection('users').snapshots(),
                   builder: (context, snapshot) {
@@ -254,10 +270,10 @@ class Home extends StatelessWidget {
                         }
                     );
                   }
-              ),*/
+              ),
           ]
         ),
-      ),
+      ),),
     );
   }
 }
