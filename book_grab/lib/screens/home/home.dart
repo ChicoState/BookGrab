@@ -187,17 +187,100 @@ class _mySearch extends State<InstantSearchBar>{
             shrinkWrap: true,
             children: tempSearchRes.map((element){
               return Scaffold(
-                  body: Container(
-                    padding: EdgeInsets.fromLTRB(10,10,10,0),
-                    height: 220,
-                    width: double.maxFinite,
-                      child: Text(element['name'],
+                  body: Column(
+                    //padding: EdgeInsets.fromLTRB(10,10,10,0),
+                    //height: 220,
+                    //width: double.maxFinite,
+                    children: <Widget>[
+                      Text(
+                        "${element['name']}",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                      Table(
+                          children: [
+                            TableRow(
+                                children: [
+                                  Text(
+                                    "Major:",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    "${element['major']}",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15.0,
+                                    ),
+                                  ),
+                                ]
+                            ),
+                            TableRow(
+                                children: [
+                                  Text(
+                                    "Class:",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    "${element['class']}",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15.0,
+                                    ),
+                                  ),
+                                ]
+                            ),
+                            TableRow(
+                                children: [
+                                  Text(
+                                    "Author:",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    "${element['author']}",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15.0,
+                                    ),
+                                  ),
+                                ]
+                            ),
+                          ]
+                      ),
+                      RaisedButton(
+                        child: Text("Buy"),
+                        onPressed: () {}
+                      )
+                    ],
+
+                      /*
+                      child: Text(
+                          "${element['name']}",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20.0,
                           )
                       )
+
+                       */
                   )
                 );
             }).toList())
