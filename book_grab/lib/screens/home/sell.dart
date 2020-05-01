@@ -18,6 +18,7 @@ class _SellState extends State<Sell> {
   String _classNo = 'placeholder';
   String _major = 'placeholder';
   String _isbn = 'placeholder';
+  String _search_key = 'placeholder';
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -45,6 +46,7 @@ class _SellState extends State<Sell> {
                         ),
                         onChanged: (val) {
                           setState(()=> _name = val);
+                          setState(()=> _search_key = val[0]);
                         }
                     ),
                     SizedBox(height: 5.0),
@@ -102,6 +104,16 @@ class _SellState extends State<Sell> {
                           'class': _classNo,
                           'major': _major,
                           'isbn': _isbn,
+                        });
+                        //add() gives us an auto-id, as opposed to setData()
+                        Firestore.instance.collection('books').add({
+                          'name': _name,
+                          'author': _author,
+                          'class': _classNo,
+                          'major': _major,
+                          'isbn': _isbn,
+                          'search_key': _search_key,
+                          'seller': '${widget.username}'
                         });
                         Navigator.pop(context);
                       },
