@@ -166,8 +166,7 @@ class _mySearch extends State<InstantSearchBar>{
                   icon: Icon(Icons.arrow_back),
                   iconSize: 20.0,
                   onPressed: () {
-                    //code for the back arrow, doesn't work yet
-                    //  Navigator.of(context).pop();
+                    Navigator.of(context).pop();
                   },
                 ),
                 contentPadding: EdgeInsets.only(left: 25.0),
