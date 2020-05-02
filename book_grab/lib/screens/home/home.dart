@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:book_grab/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:book_grab/screens/home/sell.dart';
+import 'package:book_grab/models/user.dart';
 
 double _width = 250.0;
 
@@ -101,16 +102,6 @@ class _UserState extends State<UserButton> {
               );
             }
           ),
-        ),
-        RaisedButton(
-          onPressed: ()  {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Sell(
-                  username: widget.ds['username'])),
-            );
-          },
-          child: Text("Add book for sale"),
         ),
       ],
     );
@@ -301,6 +292,8 @@ class SearchService {
 //this will be a stateless widget
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
+  final User user;
+  Home({Key key, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -335,7 +328,18 @@ class Home extends StatelessWidget {
                 );
               }
             ),
+            RaisedButton(
+              onPressed: ()  {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Sell(
+                      username: user.email)),
+                );
+              },
+              child: Text("Add book for sale"),
+            ),
             SizedBox(height: 20.0),
+             Text("Users currently selling:"),
              StreamBuilder(
                   stream: Firestore.instance.collection('users').snapshots(),
                   builder: (context, snapshot) {
