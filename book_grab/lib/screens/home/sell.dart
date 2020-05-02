@@ -114,6 +114,20 @@ class _SellState extends State<Sell> {
                           'isbn': _isbn,
                           'search_key': _search_key,
                           'seller': '${widget.username}'
+                        })
+                        //this is weirdly written, but the ".then" is needed in order
+                        //to get the book_id once it is generated
+                        .then((docRef) {
+                          Firestore.instance.collection('books').document(docRef.documentID).setData({
+                            'book_id': docRef.documentID,
+                            'name': _name,
+                            'author': _author,
+                            'class': _classNo,
+                            'major': _major,
+                            'isbn': _isbn,
+                            'search_key': _search_key,
+                            'seller': '${widget.username}'
+                        });
                         });
                         Navigator.pop(context);
                       },
