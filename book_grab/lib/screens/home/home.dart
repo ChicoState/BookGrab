@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:book_grab/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:book_grab/screens/home/sell.dart';
+import 'package:book_grab/screens/home/remove.dart';
 import 'package:book_grab/models/user.dart';
 
 double _width = 250.0;
@@ -337,6 +338,16 @@ class Home extends StatelessWidget {
                 );
               },
               child: Text("Add book for sale"),
+            ),
+            RaisedButton(
+              onPressed: ()  {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Remove(
+                      username: user.email)),
+                );
+              },
+              child: Text("Remove a book"),
             ),
             SizedBox(height: 20.0),
              Text("Users currently selling:"),
