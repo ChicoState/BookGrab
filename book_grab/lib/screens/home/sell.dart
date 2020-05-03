@@ -24,23 +24,32 @@ class _SellState extends State<Sell> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Color.fromRGBO(170, 50, 51, 1),
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
-        backgroundColor: Colors.green[400],
+        backgroundColor: Color.fromRGBO(140, 0, 1, 1),
         elevation: 0.0,
         title: Text('Sell Book '),
       ),
       body: Center(
         child: Column(
           children: <Widget>[
-            Text('${widget.username}'),
+            Container( 
+            margin: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(0),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black), 
+              ),
+              child: Text("${widget.username}"), 
+            ),
+            //Text('${widget.username}'),
             Container(
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
               child: Form(
                 key: _formKey,
                 child: Column(
                   children: <Widget>[
-                    SizedBox(height: 5.0),
-                    TextFormField(
+                    TextFormField(     
                         decoration: InputDecoration(
                           hintText: 'Book Title',
                         ),
@@ -85,8 +94,9 @@ class _SellState extends State<Sell> {
                           setState(()=> _isbn = val);
                         }
                     ),
+                    SizedBox(height: 15.0),
                     RaisedButton(
-                      color: Colors.green[500],
+                      color: Color.fromRGBO(140, 0, 1, 1),
                       child: Text(
                         'Put up for Sale',
                         style: TextStyle(color: Colors.white),

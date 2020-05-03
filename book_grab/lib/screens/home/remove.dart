@@ -18,7 +18,7 @@ class _RemoveState extends State<Remove> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green[400],
+        backgroundColor: Color.fromRGBO(140, 0, 1, 1),
         elevation: 0.0,
         title: Text('Remove Book '),
       ),
