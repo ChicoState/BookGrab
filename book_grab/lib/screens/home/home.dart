@@ -88,6 +88,10 @@ class _UserState extends State<UserButton> {
                                 Text(' ISBN'),
                                 Text(' ${ds_book['isbn']}'),
                               ]),
+                              TableRow(children: [
+                                Text(' Avalibility'),
+                                Text(' ${ds_book['sold'] ? 'Avalibile' : 'Sold'}'),
+                              ]),
                             ]),
                           ),
                           Text('\n'),
@@ -237,21 +241,50 @@ class _mySearch extends State<InstantSearchBar> {
                       ),
                     ),
                   ]),
+                  TableRow(children: [
+                    Text(
+                      "Avalibility:",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                    Text(
+                      "${element['sold'] ? 'Avalible' : 'Sold'}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                  ]),
                 ]),
-                RaisedButton(child: Text("Buy"), onPressed: () {})
+                RaisedButton(
+                  child: Text("Buy"), onPressed: () async {
+                    Firestore.instance
+                        .collection('books')
+                        .document('${element['book_id']}')
+                        .updateData({
+
+                      'sold': !element['sold'],
+                    });
+                    Firestore.instance
+                        .collection('users')
+                        .document('${element['seller']}')
+                        .collection('for_sale')
+                        .document('${element['name']}')
+                        .updateData({
+
+                      'sold': !element['sold'],
+                    });
+                    element['sold'] = !element['sold'];
+                    setState(() {
+
+                    });
+                  }
+                )
               ],
-
-              /*
-                      child: Text(
-                          "${element['name']}",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
-                          )
-                      )
-
-                       */
             ));
           }).toList())
     ]));
