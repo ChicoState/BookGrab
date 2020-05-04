@@ -41,6 +41,7 @@ class _RemoveState extends State<Remove> {
                         return  Column(
                             children: <Widget>[
                               Text(ds["name"]),
+                              Text(ds["sold"] ? "Still for Sale" : "Sold"),
                               RaisedButton(
                                   color: Colors.red,
                                   child: Text(
