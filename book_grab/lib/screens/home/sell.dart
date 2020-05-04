@@ -114,7 +114,7 @@ class _SellState extends State<Sell> {
                           'class': _classNo,
                           'major': _major,
                           'isbn': _isbn,
-                          'sold': false,
+                          'sold': true,
                         });
                         //add() gives us an auto-id, as opposed to setData()
                         Firestore.instance.collection('books').add({
@@ -125,7 +125,7 @@ class _SellState extends State<Sell> {
                           'isbn': _isbn,
                           'search_key': _search_key,
                           'seller': '${widget.username}',
-                          'sold': false,
+                          'sold': true,
                         })
                         //this is weirdly written, but the ".then" is needed in order
                         //to get the book_id once it is generated
@@ -139,7 +139,7 @@ class _SellState extends State<Sell> {
                             'isbn': _isbn,
                             'search_key': _search_key,
                             'seller': '${widget.username}',
-                            'sold': false,
+                            'sold': true,
                         });
                         });
                         Navigator.pop(context);
