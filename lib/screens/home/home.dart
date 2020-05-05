@@ -3,7 +3,7 @@ import 'package:book_grab/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:book_grab/screens/home/sell.dart';
 import 'package:book_grab/screens/home/remove.dart';
-import 'package:book_grab/Models/user.dart';
+import 'package:book_grab/models/user.dart';
 
 double _width = 250.0;
 
