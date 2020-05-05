@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:book_grab/screens/wrapper.dart';
 import 'package:book_grab/services/auth.dart';
 import 'package:provider/provider.dart';
-import 'package:book_grab/models/user.dart';
+import 'package:book_grab/Models/user.dart';
 
 void main() => runApp(MyApp());
 
