@@ -1,4 +1,4 @@
-import 'package:book_grab/Models/user.dart';
+import 'package:book_grab/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 //authservice returns a user from firebase auth instance or potentially  null if logged out
