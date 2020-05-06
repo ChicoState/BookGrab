@@ -30,7 +30,7 @@ class _UserState extends State<UserButton> {
 
   @override
   Widget build(BuildContext context) {
-    return new Column(
+    return Column(
       textDirection: TextDirection.ltr,
       children: <Widget>[
         SizedBox(
@@ -63,7 +63,7 @@ class _UserState extends State<UserButton> {
                     itemCount: snapshot.data.documents.length,
                     itemBuilder: (context, index) {
                       DocumentSnapshot ds_book = snapshot.data.documents[index];
-                      return new Column(
+                      return Column(
                         children: <Widget>[
                           Text(
                             '${ds_book['name']}',
@@ -122,7 +122,7 @@ class _mySearch extends State<InstantSearchBar> {
     }
     var capitalized_value =
         value.substring(0, 1).toUpperCase() + value.substring(1);
-    if (queryResultSet.length == 0 && value.length == 1) {
+    if (queryResultSet.isEmpty && value.length == 1) {
       SearchService().searchByName(value).then((QuerySnapshot docs) {
         for (int i = 0; i < docs.documents.length; i++) {
           queryResultSet.add(docs.documents[i].data);
@@ -142,7 +142,7 @@ class _mySearch extends State<InstantSearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
         body: ListView(children: <Widget>[
       Padding(
           padding: const EdgeInsets.all(10.0),
@@ -315,7 +315,7 @@ class Home extends StatelessWidget {
         backgroundColor: Color.fromRGBO(170, 50, 51, 1),
         bottomNavigationBar: BottomAppBar(
           color: Color.fromRGBO(140, 0, 1, 1),
-          child: new Row(
+          child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
