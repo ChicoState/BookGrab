@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:book_grab/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -166,9 +167,9 @@ class _mySearch extends State<InstantSearchBar> {
           )),
       GridView.count(
           padding: EdgeInsets.only(left: 10.0, right: 10.0),
-          crossAxisCount: 2,
-          crossAxisSpacing: 4.0,
-          mainAxisSpacing: 4.0,
+          crossAxisCount: 1,
+          //crossAxisSpacing: 4.0,
+          //mainAxisSpacing: 4.0,
           primary: false,
           shrinkWrap: true,
           children: tempSearchRes.map((element) {
@@ -234,6 +235,42 @@ class _mySearch extends State<InstantSearchBar> {
                     ),
                     Text(
                       "${element['author']}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Text(
+                      "Seller:",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                    Text(
+                      "${element['seller']}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Text(
+                      "Price:",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                    Text(
+                      "\$${element['price']}",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
