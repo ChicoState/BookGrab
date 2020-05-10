@@ -20,6 +20,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:book_grab/main.dart';
+import 'package:book_grab/Models/user.dart';
+import 'package:book_grab/screens/home/home.dart';
 
 void main() {
   testWidgets('Login Page - Presets', (WidgetTester tester) async {
@@ -83,5 +85,12 @@ void main() {
     await tester.enterText(find.widgetWithText(TextFormField, 'password (8 or more characters)'),
      '12345678');
     expect(find.text('12345678'), findsOneWidget);
+  });
+  testWidgets('Home Page - Title ', (WidgetTester tester) async{
+    User testUser = User(uid: "1234", email: "fake@mail.csuchico.edu" );
+    await tester.pumpWidget(Home(user: testUser));
+    expect(find.text('Book Grab'), findsOneWidget);
+    expect(find.text('Register'), findsNothing);
+
   });
 }
