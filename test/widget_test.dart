@@ -22,6 +22,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:book_grab/main.dart';
 import 'package:book_grab/Models/user.dart';
 import 'package:book_grab/screens/home/home.dart';
+import 'package:book_grab/screens/home/sell.dart';
 
 void main() {
   Widget createWidgetForTesting({Widget child}){
@@ -29,6 +30,9 @@ void main() {
       home: child,
     );
   }
+
+
+
   testWidgets('Login Page - Presets', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp());
@@ -97,4 +101,11 @@ void main() {
     expect(find.text('Book Grab'), findsOneWidget);
     expect(find.text('Register'), findsNothing);
   });
+
+  testWidgets('Sell Page', (WidgetTester tester) async {
+    User testUser = User(uid: "1234", email: "fame@mail.csuchico.edu");
+    await tester.pumpWidget(createWidgetForTesting(child: new Sell()));
+    expect(find.text('Sell Book '), findsOneWidget);
+  });
+
 }
