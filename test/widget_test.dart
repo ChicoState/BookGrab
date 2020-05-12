@@ -154,4 +154,13 @@ void main() {
     expect(find.text('Remove Book '), findsOneWidget);
   });
 
+  testWidgets('Searchbar', (WidgetTester tester) async {
+    User testUser = User(uid: "1234", email: "fame@mail.csuchico.edu");
+    await tester.pumpWidget(createWidgetForTesting(child: new InstantSearchBar()));
+    expect(find.text('Search for textbooks...'), findsOneWidget);
+    await tester.enterText(find.widgetWithText(TextField, 'Search for textbooks...'),
+     'Intro');
+  });
+  
+
 }
