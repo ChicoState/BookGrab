@@ -33,7 +33,7 @@ void main() {
 
 
 
-  testWidgets('Login Page - Presets', (WidgetTester tester) async {
+  testWidgets('Login Page - Layout', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp());
     // find headers
@@ -73,7 +73,7 @@ void main() {
     expect(find.text('123456'), findsOneWidget);
   });
 
-  testWidgets('Register Page - Presets', (WidgetTester tester) async {
+  testWidgets('Register Page - Layout', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp(), );
     // click register page from login
@@ -95,17 +95,57 @@ void main() {
      '12345678');
     expect(find.text('12345678'), findsOneWidget);
   });
+
   testWidgets('Home Page - Title ', (WidgetTester tester) async{
     User testUser = User(uid: "1234", email: "fake@mail.csuchico.edu" );
     await tester.pumpWidget(createWidgetForTesting(child: new Home(user: testUser)));
+    // titles
     expect(find.text('Book Grab'), findsOneWidget);
+    expect(find.text('Users currently selling:'), findsOneWidget);
     expect(find.text('Register'), findsNothing);
+    // bottom app bar icons and main page icons
+    expect(find.byIcon(Icons.person), findsOneWidget); // logout button
+    expect(find.byIcon(Icons.search), findsNWidgets(2)); // search buttons
+    expect(find.byIcon(Icons.add), findsOneWidget); // add book button
+    expect(find.byIcon(Icons.remove), findsOneWidget); // remove book button 
+    // find the gesture buttons text
+    expect(find.widgetWithText(GestureDetector, '\nAdd Book for Sale'), findsOneWidget);
+    expect(find.widgetWithText(GestureDetector, '\nSearch for Specific Book'), findsOneWidget);
+    expect(find.widgetWithText(GestureDetector, '\nRemove a Book'), findsOneWidget);
   });
 
-  testWidgets('Sell Page', (WidgetTester tester) async {
-    User testUser = User(uid: "1234", email: "fame@mail.csuchico.edu");
+    testWidgets('Sell Page', (WidgetTester tester) async{
     await tester.pumpWidget(createWidgetForTesting(child: new Sell()));
+    // check if in sell page
     expect(find.text('Sell Book '), findsOneWidget);
+    // look for form data fields
+    expect(find.widgetWithText(TextFormField, 'Book Title'), findsOneWidget);
+    expect(find.widgetWithText(TextFormField, 'Book Author'), findsOneWidget); 
+    expect(find.widgetWithText(TextFormField, 'Class Major'), findsOneWidget); 
+    expect(find.widgetWithText(TextFormField, 'Class Number'), findsOneWidget); 
+    expect(find.widgetWithText(TextFormField, 'ISBN'), findsOneWidget); 
+    expect(find.widgetWithText(TextFormField, 'Price'), findsOneWidget); 
+    // enter text into data fields
+    await tester.enterText(find.widgetWithText(TextFormField, 'Book Title'),
+     'Textbook Title');
+    expect(find.text('Textbook Title'), findsOneWidget);
+    await tester.enterText(find.widgetWithText(TextFormField, 'Book Author'),
+     'Textbook Author');
+    expect(find.text('Textbook Author'), findsOneWidget);
+    await tester.enterText(find.widgetWithText(TextFormField, 'Class Major'),
+     'CSCI');
+    expect(find.text('CSCI'), findsOneWidget);
+    await tester.enterText(find.widgetWithText(TextFormField, 'Class Number'),
+     '111');
+    expect(find.text('111'), findsOneWidget);
+    await tester.enterText(find.widgetWithText(TextFormField, 'ISBN'),
+     '123456');
+    expect(find.text('123456'), findsOneWidget);
+    await tester.enterText(find.widgetWithText(TextFormField, 'Price'),
+     '100');
+    expect(find.text('100'), findsOneWidget);
+    // form button
+    expect(find.widgetWithText(RaisedButton, 'Put up for Sale'), findsOneWidget); // sale button
   });
 
   testWidgets('Remove Page', (WidgetTester tester) async {
