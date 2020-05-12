@@ -1,6 +1,6 @@
 
 ////////////////////////////// WIDGET TESTING //////////////////////////////
-// Widget testing is a unique tool that flutter provies to check if widgets 
+// Widget testing is a unique tool that flutter provies to check if widgets
 // are acting as expected. It is similar to unit testing, but focuses on
 // UI. Essentially it checks if certian text, buttons, and input fields
 // are where they are suppose to be.
@@ -14,7 +14,7 @@
 ////////////////////////////// HOW TO READ TESTS //////////////////////////////
 // If all tests pass you will see: All tests passed!
 // Otherwise you will see which tests failed and see which line number failed
-// You can think of each of the tests as checking to see if everything is where it is 
+// You can think of each of the tests as checking to see if everything is where it is
 // suppose to be. Each tests contains multiple checks pertaining to each page.
 
 import 'package:flutter/material.dart';
@@ -24,6 +24,11 @@ import 'package:book_grab/Models/user.dart';
 import 'package:book_grab/screens/home/home.dart';
 
 void main() {
+  Widget createWidgetForTesting({Widget child}){
+    return MaterialApp(
+      home: child,
+    );
+  }
   testWidgets('Login Page - Presets', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp());
@@ -43,7 +48,7 @@ void main() {
     RaisedButton button = find.widgetWithText(RaisedButton, 'Register').evaluate().first.widget;
     button.onPressed();
     await tester.pump(const Duration(milliseconds: 100));
-    expect(find.text('Register'), findsOneWidget); 
+    expect(find.text('Register'), findsOneWidget);
   });
 
   testWidgets('Login Page - Login Input', (WidgetTester tester) async {
@@ -88,9 +93,8 @@ void main() {
   });
   testWidgets('Home Page - Title ', (WidgetTester tester) async{
     User testUser = User(uid: "1234", email: "fake@mail.csuchico.edu" );
-    await tester.pumpWidget(Home(user: testUser));
+    await tester.pumpWidget(createWidgetForTesting(child: new Home(user: testUser)));
     expect(find.text('Book Grab'), findsOneWidget);
     expect(find.text('Register'), findsNothing);
-
   });
 }
