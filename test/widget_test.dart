@@ -23,7 +23,7 @@ import 'package:book_grab/main.dart';
 import 'package:book_grab/Models/user.dart';
 import 'package:book_grab/screens/home/home.dart';
 import 'package:book_grab/screens/home/sell.dart';
-
+import 'package:book_grab/screens/home/remove.dart';
 void main() {
   Widget createWidgetForTesting({Widget child}){
     return MaterialApp(
@@ -106,6 +106,12 @@ void main() {
     User testUser = User(uid: "1234", email: "fame@mail.csuchico.edu");
     await tester.pumpWidget(createWidgetForTesting(child: new Sell()));
     expect(find.text('Sell Book '), findsOneWidget);
+  });
+
+  testWidgets('Remove Page', (WidgetTester tester) async {
+    User testUser = User(uid: "1234", email: "fame@mail.csuchico.edu");
+    await tester.pumpWidget(createWidgetForTesting(child: new Remove()));
+    expect(find.text('Remove Book '), findsOneWidget);
   });
 
 }

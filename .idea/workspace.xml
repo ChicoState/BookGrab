@@ -29,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/widget_test.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="104" column="24" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="24" />
+            <state relative-caret-position="379">
+              <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
               <folding>
                 <element signature="e#1067#1106#0" expanded="true" />
               </folding>
@@ -239,13 +239,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Flutter Test.Sell Page">
+  <component name="RunManager" selected="Flutter Test.Remove Page">
     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter" nameIsGenerated="true">
       <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
       <method v="2" />
     </configuration>
     <configuration name="Home Page - Title " type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
       <option name="testName" value="Home Page - Title " />
+      <option name="testFile" value="$PROJECT_DIR$/test/widget_test.dart" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Remove Page" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
+      <option name="testName" value="Remove Page" />
       <option name="testFile" value="$PROJECT_DIR$/test/widget_test.dart" />
       <method v="2" />
     </configuration>
@@ -256,6 +261,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Flutter Test.Remove Page" />
         <item itemvalue="Flutter Test.Sell Page" />
         <item itemvalue="Flutter Test.Home Page - Title " />
       </list>
@@ -424,8 +430,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/widget_test.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="104" column="24" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="24" />
+        <state relative-caret-position="379">
+          <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
           <folding>
             <element signature="e#1067#1106#0" expanded="true" />
           </folding>
