@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3216d6a6-a8c9-408d-b041-e3911587ad1e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/widget_test.dart" afterDir="false" />
-    </list>
+    <list default="true" id="3216d6a6-a8c9-408d-b041-e3911587ad1e" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/widget_test.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
+            <state relative-caret-position="339">
+              <caret line="104" column="24" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="24" />
               <folding>
                 <element signature="e#1067#1106#0" expanded="true" />
               </folding>
@@ -291,6 +287,15 @@
     <history-entry file="Sell_Page - 2020.05.11 at 21h 29m 00s.xml">
       <configuration name="Sell Page" configurationId="FlutterTestConfigType" />
     </history-entry>
+    <history-entry file="Sell_Page - 2020.05.11 at 21h 29m 20s.xml">
+      <configuration name="Sell Page" configurationId="FlutterTestConfigType" />
+    </history-entry>
+    <history-entry file="Sell_Page - 2020.05.11 at 21h 32m 00s.xml">
+      <configuration name="Sell Page" configurationId="FlutterTestConfigType" />
+    </history-entry>
+    <history-entry file="Sell_Page - 2020.05.11 at 21h 33m 13s.xml">
+      <configuration name="Sell Page" configurationId="FlutterTestConfigType" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -419,8 +424,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/widget_test.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
+        <state relative-caret-position="339">
+          <caret line="104" column="24" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="24" />
           <folding>
             <element signature="e#1067#1106#0" expanded="true" />
           </folding>
