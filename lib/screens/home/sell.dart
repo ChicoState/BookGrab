@@ -43,7 +43,7 @@ class _SellState extends State<Sell> {
             decoration: BoxDecoration(
               border: Border.all(color: Colors.black), 
               ),
-              child: Text("${widget.username}"), 
+              child: Text("${widget.username}", textAlign: TextAlign.center,), 
             ),
             //Text('${widget.username}'),
             Container(

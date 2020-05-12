@@ -463,7 +463,7 @@ class Home extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
-                              child: Text("\nAdd book for sale"),
+                              child: Text("\nAdd Book for Sale"),
                               onTap: () {
                                 Navigator.push(
                                   context,
@@ -504,7 +504,7 @@ class Home extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
-                              child: Text("\nRemove a book"),
+                              child: Text("\nRemove a Book"),
                               onTap: () {
                                 Navigator.push(
                                   context,
