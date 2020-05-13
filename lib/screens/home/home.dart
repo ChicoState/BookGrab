@@ -298,8 +298,8 @@ class _MySearch extends State<InstantSearchBar> {
                   ]),
                 ]),
                 RaisedButton(
-                  child: Text("Buy"), onPressed: () async {
-                    Firestore.instance
+                  child: Text("Buy"), onPressed: () {
+                     Firestore.instance
                         .collection('books')
                         .document('${element['book_id']}')
                         .updateData({
@@ -361,7 +361,7 @@ class Home extends StatelessWidget {
                 textColor: Colors.white,
                 //logout button will call signout on our authservice.
                 label: Text('search'),
-                onPressed: () async {
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => InstantSearchBar()),
