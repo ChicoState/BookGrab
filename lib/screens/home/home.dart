@@ -68,7 +68,7 @@ class _UserState extends State<UserButton> {
                         children: <Widget>[
                           Text(
                             '${ds_book['name']}',
-                            style: new TextStyle(fontSize: 20.0),
+                            style: TextStyle(fontSize: 20.0),
                           ),
                           Container(
                             width: _width,
@@ -108,10 +108,10 @@ class _UserState extends State<UserButton> {
 
 class InstantSearchBar extends StatefulWidget {
   @override
-  _mySearch createState() => _mySearch();
+  _MySearch createState() => _MySearch();
 }
 
-class _mySearch extends State<InstantSearchBar> {
+class _MySearch extends State<InstantSearchBar> {
   var queryResultSet = [];
   var tempSearchRes = [];
   initiateSearch(value) {
