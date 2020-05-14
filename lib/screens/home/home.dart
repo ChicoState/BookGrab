@@ -68,6 +68,7 @@ class _UserState extends State<UserButton> {
                         children: <Widget>[
                           Text(
                             '${ds_book['name']}',
+                            textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 20.0),
                           ),
                           Container(

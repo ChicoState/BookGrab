@@ -129,8 +129,8 @@ class _RegisterState extends State<Register> {
 
                     //attempt to add for_sale collection as well
                     //adds fine still need to figure out name bug on sell.dart
-              final Firestore store = Firestore.instance;
-              store.collection("users").document("$email").collection("for_sale").add({});
+              //final Firestore store = Firestore.instance;
+              //store.collection("users").document("$email").collection("for_sale").add({});
 
 
                   }
